@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "RL architecture analysis",
+    "type": "object",
+    "properties": {
+      "examples": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string"
+            },
+            "language": {
+              "type": "string"
+            },
+            "environment": {
+              "type": "string"
+            },
+            "technique": {
+              "type": "string"
+            },
+            "hyperparameter_tuning": {
+              "type": "boolean"
+            },
+            "line_numbers": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "hyperparameters": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "libraries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["filename", "language", "environment", "technique", "hyperparameter_tuning", "line_numbers"]
+        }
+      }
+    },
+    "required": ["examples"]
+  }
+  

@@ -26,10 +26,64 @@
 
 ## II. repo contains
 
-a) source code instances
-b) ground truth files
-c) LLM prompts with LLM output (as JSON)
-d) summary/discussion
+a. source code instances
+b. ground truth files
+c. LLM prompts with LLM output (as JSON)
+d. summary/discussion
 
-## III. summary/discussion
-...
+
+## III. sources
+
+### source WITH HT or HPO
+> source A1
+> own py-file: "withHT.py" for very simple CartPole environemnt
+> note: very easy and clear example
+
+
+> source B1
+> link: https://github.com/DLR-RM/rl-baselines3-zoo
+
+> source C1
+
+### source WITHOUT HT or HPO
+> source A2
+> own py-file: "withoutHT.py" for very simple CartPole environemnt
+> note: very easy and clear example
+
+> source B2
+
+> source C2
+
+## IV. summary/discussion
+- 
+Which programming language was mainly used: python, ipynt
+Assumption: How do you distinguish whether a source code uses hyperparameter fine tuning or not. If fine tuning is not used, a default setting is used. How can you see in the source code that no fine tuning is used:
+- no **explicit specification** of hyperparameter:
+  - Examples/selection of hyperparameters: 
+    - `batch_size`
+    - `gamma`
+    - `lr`
+    - `n-trials`
+    - `n-jobs`
+    - `sampler`
+    - `pruner`
+  - Examples of explicit information:
+    - `python train.py --algo ppo --env MountainCar-v0 -n 50000 -optimize --n-trials 1000 --n-jobs 2 --sampler tpe --pruner median`
+    - `[...] learning_rate = 0.001 [...]`
+
+`class stable_baselines3.ppo.PPO(policy, env, learning_rate=0.0003, n_steps=2048, batch_size=64, n_epochs=10, gamma=0.99, gae_lambda=0.95, clip_range=0.2, clip_range_vf=None, normalize_advantage=True, ent_coef=0.0, vf_coef=0.5, max_grad_norm=0.5, use_sde=False, sde_sample_freq=-1, rollout_buffer_class=None, rollout_buffer_kwargs=None, target_kl=None, stats_window_size=100, tensorboard_log=None, policy_kwargs=None, verbose=0, seed=None, device='auto', _init_setup_model=True)`
+
+- Use/import libraries like *optuna*:
+  - `import optuna` (explicit fine tuning takes place here)
+
+
+
+## V. literature
+
+[1] https://www.automl.org/hyperparameter-tuning-in-reinforcement-learning-is-easy-actually/ 
+
+[2] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
+- "[...] Not all hyperparameters are tuned, and tuning enforces certain default hyperparameter settings that may be different from the official defaults. [...]
+Hyperparameters not specified in rl_zoo3/hyperparams_opt.py are taken from the associated YAML file and fallback to the default values of SB3 if not present. [...]"
+
+[3] RL hyperparameter tuning (RL zoo): https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr and https://github.com/DLR-RM/rl-baselines3-zoo
