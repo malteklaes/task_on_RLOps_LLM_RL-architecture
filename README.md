@@ -85,7 +85,8 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 
 1. Heuristic for "fine tuning is applied":
-  (a) **HPO-methods are used [1] such as**:
+   
+   (a) **HPO-methods are used [1] such as**:
     - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning)
     - `RS` (Random Search)
     - `BGT` (Bayesian Graph Transformer)
