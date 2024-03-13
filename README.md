@@ -27,9 +27,9 @@
 ## II. repo contains
 
 (a) source code instances (at total 6 source files) <br>
-(b) jsonResultLayout (with json layout file) <br>
-(c) ground truth (GT) files (6 files for each source code) <br>
-(d) LLM prompts with LLM output (6 json files, 1 md-file with LLM interaction) <br>
+(b) jsonResultLayout (with json layout file, based on json-schema: https://json-schema.org/draft-07/json-schema-release-notes) <br>
+(c) ground truth (GT) files (6 files (3 with HT, 3 without HT) for each source code) <br>
+(d) LLM prompts with LLM output (6 output-json files (3 with HT, 3 without HT), 1 md-file with LLM interaction) <br>
 (e) README.md (with overview, procedure and summary (Criterias/heuristic, discussion, result)) <br>
 
 
@@ -98,7 +98,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
     - **APPLY** in **source B1**
 
     (b) **auto/hand-tuning**:**HPO libraries or frameworks are used**:
-    - This criterion can be a bit broad, since, for example, python/stable-baselines3 also uses optuna in the background (except PPO [2]) and, strictly speaking, every file with a lib import "import stable_baselines3" also implicitly uses "hyperparameter tuning". It is therefore assumed that the use of the HPO-lib would have to be combined with a concrete definition of space, as in the hyperopt example (like in case of *hyperopt*).
+    - This criterion can be a bit broad, since, for example, python/stable-baselines3 also uses optuna and "RL Baselines Zoo" (with already fine-tuned hyperparameters) in the background so, strictly speaking, every file with a lib import "import stable_baselines3" also implicitly uses "hyperparameter tuning". It is therefore assumed that the use of the HPO-lib would have to be combined with a concrete definition of space, as in the hyperopt example (like in case of *hyperopt*).
     - `Optuna` (python, [6], used especially used in python/stable-baselines3 [7])
     - `scikit-optimize` (python, [3][4])
       - e.g. `from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, BayesSearchCV`
@@ -129,9 +129,9 @@ To get a better feeling for hyperparameters, here are some examples/selection of
     
 <br>
 
-2.  Criterion/Heuristic for "fine tuning is NOT applied":
+1.  Criterion/Heuristic for "fine tuning is NOT applied":
 
-  - if 1a-e does not apply
+  - if 1a-d does not apply
     - **APPLY** in **source A2**
     - **APPLY** in **source B2**
     - **APPLY** in **source C2**

@@ -1,0 +1,21 @@
+{
+  "examples": [
+    {
+      "filename": "train_sb3.py",
+      "language": "Python",
+      "environment": "gymnasium",
+      "technique": "Stable Baselines3, configuration",
+      "hyperparameter_tuning_applied": true,
+      "line_numbers": [18],
+      "hyperparameters": {},
+      "libraries": ["hydra", "stable_baselines3", "omegaconf"],
+      "specific_criteria": {
+        "auto-tuning": true,
+        "auto/hand-tuning": false,
+        "hand-tuning": false,
+        "parameterization": false
+      }
+    }
+  ]
+}
+

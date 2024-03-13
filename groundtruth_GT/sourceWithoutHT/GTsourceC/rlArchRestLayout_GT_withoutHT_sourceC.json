@@ -1,0 +1,23 @@
+{
+  "examples": [
+    {
+      "filename": "Trainer.cpp",
+      "language": "C++",
+      "environment": "Arcade Learning Environment (ALE)",
+      "technique": "Deep Q-Network (DQN)",
+      "hyperparameter_tuning_applied": false,
+      "line_numbers": [],
+      "hyperparameters": {
+        "batch_size": "32",
+        "decay_rate": "0.99"
+      },
+      "libraries": ["Trainer.h", "dqn.h", "ExperienceReplay.h", "ale_interface.hpp", "math.h", "chrono"],
+      "specific_criteria": {
+        "auto-tuning": false,
+        "auto/hand-tuning": false,
+        "hand-tuning": false,
+        "parameterization": false
+      }
+    }
+  ]
+}
