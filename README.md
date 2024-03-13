@@ -39,11 +39,13 @@
 > filename: "withHT.py" (own py-file inspired by [9], for very simple CartPole environment, different learning_rate-hyperparameters) <br>
 > note: very easy and clear example
 
-
 > **source B1** <br>
-> link: https://github.com/DLR-RM/rl-baselines3-zoo
+> filename: "sb3_agent.py" (here dehb-config as HPO-method is used)
+> link: https://github.com/facebookresearch/how-to-autorl/tree/main/examples
 
-> **source C1**
+> **source C1** <br>
+> filename: "hyperoptExample.py" <br>
+> link: http://hyperopt.github.io/hyperopt/
 
 
 ### source WITHOUT HT or HPO
@@ -55,15 +57,15 @@
 > filenname: "7. Temporal Difference and Q-Learning" (Jupyter notebook file (ipynb)) <br>
 > link: https://github.com/maykulkarni/Machine-Learning-Notebooks/blob/master/07.%20Reinforcement%20Learning/7.%20Temporal%20Difference%20and%20Q-Learning.ipynb
 
-> **source C2**
-> filenname: "Trainer.cpp"
+> **source C2** <br>
+> filenname: "Trainer.cpp" <br>
 > link: https://github.com/navneet-nmk/Pytorch-RL-CPP/blob/master/Trainer.cpp
 
 ## IV. summary/discussion
 
 The question is when exactly one can speak of “hyperparameter tuning”. Here it is assumed that the initial definition of hyperparameters in the source code does NOT count towards hyperparameter tuning. There must be a search of a hyperparameter space (to find the combination of hyperparameters) to ultimately lead to improved performance of the RL algorithm.
 
-Further heuristics will be listed that suggest (or not) the identification of hyperparameter tuning in this sense in a source code.
+Further criterions/heuristics will be listed that suggest (or not) the identification of hyperparameter tuning in this sense in a source code.
 To get a better feeling for hyperparameters, here are some examples/selection of hyperparameters (in python/baselines3) for tuning a RL-Algorithm (not exhaustive, just a selection): 
   - `batch_size`
   - `buffer_size`
@@ -84,44 +86,64 @@ To get a better feeling for hyperparameters, here are some examples/selection of
   - ...
 
 
-1. Heuristic for "fine tuning is applied":
+1. Criterion/Heuristic for "fine tuning is applied":
    
-   (a) **HPO-methods are used [1] such as**:
-    - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning)
-    - `RS` (Random Search)
-    - `BGT` (Bayesian Graph Transformer)
-    - `Grid Search`
+   (a) **auto-tuning**: **HPO-methods/tools are used [1a] such as**:
 
-    (b) **HPO libraries or frameworks are used**:
+    - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning) [1c]
+    - `PBT` [2]
+    - ...
+
+    (b) **auto/hand-tuning**:**HPO libraries or frameworks are used**:
+    - This criterion can be a bit broad, since, for example, python/stable-baselines3 also uses optuna in the background (except PPO [2]) and, strictly speaking, every file with a lib import "import stable_baselines3" also implicitly uses "hyperparameter tuning". It is therefore assumed that the use of the HPO-lib would have to be combined with a concrete definition of space, as in the hyperopt example (like in case of *hyperopt*).
     - `Optuna` (python, [6], used especially used in python/stable-baselines3 [7])
     - `scikit-optimize` (python, [3][4])
       - e.g. `from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, BayesSearchCV`
     - `hyperopt` [5]
+      - example for explicit space-definition: 
+        ```python 
+          space = hp.choice('a',
+            [
+                ('case 1', 1 + hp.lognormal('c1', 0, 1)),
+                ('case 2', hp.uniform('c2', -10, 10))
+            ])
+        ```
+    - **APPLY** in **source C1**
 
-    (c) **Loops in source code that iterate over hyperparameter settings**:
+    (c) **hand-tuning**: **Loops in source code that iterate over hyperparameter settings**:
     - here a for loop would have to be combined with parameter changes
+    - `Grid Search`
+    - `Random Search`
+    - **APPLY** in **source A1**
 
-    (d) **Parameterization of hyperparameters with e.g. YAML-files**
+    (d) **auto-tuning**: **Parameterization of hyperparameters with e.g. YAML-files**
     -  `a2c.yml` [8]
     -  `ars.yml` [8]
     -  `ppo_lstm.yml` [8]
     -  `trpo.yml` [8]
     -  ...
 
-    (e) **chosen RL-algorithm**:
-    - PPO does not necessarily require hyperparameter tuning, other algorithm does [2]
-    (f) direct implementation of HPO algorithms
     
 <br>
 
-2. Heuristic for "fine tuning is NOT applied":
-  - if 1a-f does not apply
+2.  Criterion/Heuristic for "fine tuning is NOT applied":
+
+  - if 1a-e does not apply
+    - **APPLY** in **source A2**
+    - **APPLY** in **source B2**
+    - **APPLY** in **source C2**
 
 
 
 ## V. literature
 
-[1] https://www.automl.org/hyperparameter-tuning-in-reinforcement-learning-is-easy-actually/ 
+[1a] (HPO-methods/tools, HPO best practice) https://www.automl.org/hyperparameter-tuning-in-reinforcement-learning-is-easy-actually/ (full paper: https://arxiv.org/pdf/2306.01324.pdf)
+
+[1b] https://github.com/facebookresearch/how-to-autorl/blob/main/docs/index.md
+
+[1c] (DEHB) https://arxiv.org/pdf/2105.09821.pdf
+
+[1d] (PBT) https://arxiv.org/pdf/1902.01894.pdf
 
 [2] https://jonathan-hui.medium.com/rl-reinforcement-learning-algorithms-comparison-76df90f180cf
 - HPO provide best practice to handle multiple seeds
