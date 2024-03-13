@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RL architecture analysis (hyperparameter_tuning)",
+  "type": "object",
+  "properties": {
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "string"
+          },
+          "technique": {
+            "type": "string"
+          },
+          "hyperparameter_tuning_applied": {
+            "type": "boolean"
+          },
+          "line_numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "hyperparameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "libraries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "specific_criteria": {
+            "type": "object",
+            "properties": {
+              "auto-tuning": {
+                "type": "boolean"
+              },
+              "auto/hand-tuning": {
+                "type": "boolean"
+              },
+              "hand-tuning": {
+                "type": "boolean"
+              },
+              "parameterization": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "required": ["filename", "language", "environment", "technique", "hyperparameter_tuning", "line_numbers", "specific_criteria"]
+      }
+    }
+  },
+  "required": ["examples"]
+}
