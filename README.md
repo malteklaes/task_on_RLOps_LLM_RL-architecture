@@ -138,6 +138,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 
 #### IV-B: discussion
+- LLM-related aspects can be found in "LLM_prompts_training.md" in directory: collections_LLM_prompts_results\LLM_results
 #### IV-C: result (comparison between GT and LLM-result) 
 
 
