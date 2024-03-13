@@ -88,10 +88,9 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 1. Criterion/Heuristic for "fine tuning is applied":
    
-   (a) **auto-tuning**: **HPO-methods/tools are used [1a] such as**:
-
+   (a) **auto-tuning**: **HPO-methods/tools for auto-RL [1b] are used [1a] such as**:
     - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning) [1c]
-    - `PBT` [2]
+    - `PBT` [1d]
     - ...
 
     (b) **auto/hand-tuning**:**HPO libraries or frameworks are used**:
