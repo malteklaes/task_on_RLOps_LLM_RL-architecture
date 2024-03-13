@@ -23,9 +23,7 @@
 
 ## prompts of "training-phase" (fine tuning) of the LLM via prompt engineering
 - With regard to prompt engineering, the criteria/heuristics (see README.md) developed for training and fine tuning were handed over to the LLM model piece by piece.
-- prompts:
-
-(1) criteria/heuristics:
+- prompts/interaction:
   
 > me
   ```
@@ -82,7 +80,7 @@
 ```
 
 
-## "training-phase" (fine tuning) of the LLM via prompt engineering and additional files
+## alternative "training-phase" (fine tuning) of a LLM via prompt engineering and additional files
 
 - alternative training of less pre-defined and well developed LLMs like GPT-3.5 via txt-files of relevant content (hyperparameter, passages of for-loops) like this:
 ```txt
