@@ -59,7 +59,7 @@
 
 > me
   ```
-    Please use this JSON schema as a response template for your response:
+    Please use this result JSON-schema as a response template for your response:
     (see rlArchRestLayout.json)
 ```
 > answer GPT-3.5
@@ -69,7 +69,7 @@
 
 > me (analysis request)
   ```
-  please analyze this source file with the previously defined criteria and heuristics:
+  please analyze this source file with the previously defined criteria and heuristics and output your result using the previous defined result JSON-schema:
   - source file:
   <<source[A/B/C][1/2/3]>>
     
