@@ -26,33 +26,33 @@
 
 ## II. repo contains
 
-(a) source code instances
-(b) ground truth files
-(c) LLM prompts with LLM output (as JSON)
-(d) summary/discussion
+(a) source code instances <br>
+(b) ground truth files <br>
+(c) LLM prompts with LLM output (as JSON) <br>
+(d) summary/discussion <br>
 
 
 ## III. sources
 
 ### source WITH HT or HPO
 > **source A1** <br>
-> filename: "withHT.py" (own py-file inspired by [9], for very simple CartPole environment, different learning_rate-hyperparameters)
+> filename: "withHT.py" (own py-file inspired by [9], for very simple CartPole environment, different learning_rate-hyperparameters) <br>
 > note: very easy and clear example
 
 
-> **source B1**
+> **source B1** <br>
 > link: https://github.com/DLR-RM/rl-baselines3-zoo
 
 > **source C1**
 
 
 ### source WITHOUT HT or HPO
-> **source A2**
-> filename: "withoutHT.py" (own py-file inspired by [9], for very simple CartPole environemnt)
+> **source A2** <br>
+> filename: "withoutHT.py" (own py-file inspired by [9], for very simple CartPole environemnt) <br>
 > note: very easy and clear example
 
-> **source B2**
-> filenname: "7. Temporal Difference and Q-Learning" (Jupyter notebook file (ipynb))
+> **source B2** <br>
+> filenname: "7. Temporal Difference and Q-Learning" (Jupyter notebook file (ipynb)) <br>
 > link: https://github.com/maykulkarni/Machine-Learning-Notebooks/blob/master/07.%20Reinforcement%20Learning/7.%20Temporal%20Difference%20and%20Q-Learning.ipynb
 
 > **source C2**
