@@ -26,37 +26,37 @@
 
 ## II. repo contains
 
-a) source code instances
-b) ground truth files
-c) LLM prompts with LLM output (as JSON)
-d) summary/discussion
+(a) source code instances
+(b) ground truth files
+(c) LLM prompts with LLM output (as JSON)
+(d) summary/discussion
 
 
 ## III. sources
 
 ### source WITH HT or HPO
-> source A1
-> own py-file: "withHT.py" (for very simple CartPole environment, different learning_rate-hyperparameters)
+> **source A1** <br>
+> filename: "withHT.py" (own py-file inspired by [9], for very simple CartPole environment, different learning_rate-hyperparameters)
 > note: very easy and clear example
 
 
-> source B1
+> **source B1**
 > link: https://github.com/DLR-RM/rl-baselines3-zoo
 
-> source C1
+> **source C1**
 
 
 ### source WITHOUT HT or HPO
-> source A2
-> own py-file: "withoutHT.py" (for very simple CartPole environemnt)
+> **source A2**
+> filename: "withoutHT.py" (own py-file inspired by [9], for very simple CartPole environemnt)
 > note: very easy and clear example
 
-> source B2
-> Jupyter notebook file (ipynb): "7. Temporal Difference and Q-Learning"
+> **source B2**
+> filenname: "7. Temporal Difference and Q-Learning" (Jupyter notebook file (ipynb))
 > link: https://github.com/maykulkarni/Machine-Learning-Notebooks/blob/master/07.%20Reinforcement%20Learning/7.%20Temporal%20Difference%20and%20Q-Learning.ipynb
 
-> source C2
-> Trainer.cpp
+> **source C2**
+> filenname: "Trainer.cpp"
 > link: https://github.com/navneet-nmk/Pytorch-RL-CPP/blob/master/Trainer.cpp
 
 ## IV. summary/discussion
@@ -140,14 +140,16 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 [8] RL hyperparameter tuning (RL zoo): https://github.com/DLR-RM/rl-baselines3-zoo
 
-[9] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
+[9] https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html
+
+[10] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
 - "[...] RL Baselines3 Zoo s a training framework for Reinforcement Learning (RL), [...]
 It provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
 In addition, it includes a collection of tuned hyperparameters for common environments and RL algorithms, and agents trained with those settings. [...]"
 
-[10] general RL: https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr 
+[11] general RL: https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr 
 
-[11] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
+[12] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
 - "[...] Not all hyperparameters are tuned, and tuning enforces certain default hyperparameter settings that may be different from the official defaults. [...]
 Hyperparameters not specified in rl_zoo3/hyperparams_opt.py are taken from the associated YAML file and fallback to the default values of SB3 if not present. [...]"
 
