@@ -1,4 +1,4 @@
-# Task on RLOps and LLM for automation of RL-architecture and non-fct requirements architecture
+# Task on RLOps and LLM for automation of RL-architecture2 and non-fct requirements architecture
 
 
 > procedure to solve the task
@@ -57,24 +57,31 @@ d. summary/discussion
 > source C2
 
 ## IV. summary/discussion
-- 
-Which programming language was mainly used: python, ipynt
-Assumption: How do you distinguish whether a source code apply hyperparameter fine tuning or not. If fine tuning is not used, a default setting or prediefined hyperparameter is used. How can you see in the source code whether fine tuning is applied or not:
+
+The question is when exactly one can speak of “hyperparameter tuning”. Here it is assumed that the initial definition of hyperparameters in the source code does NOT count towards hyperparameter tuning. There must be a search of a hyperparameter space (to find the combination of hyperparameters) to ultimately lead to improved performance of the RL algorithm.
+
+Further heuristics will be listed that suggest (or not) the identification of hyperparameter tuning in this sense in a source code.
+To get a better feeling for hyperparameters, here are some examples/selection of hyperparameters (in python/baselines3) for tuning a RL-Algorithm (not exhaustive, just a selection): 
+  - `batch_size`
+  - `buffer_size`
+  - `clip_range`
+  - `ent_coef`
+  - `gamma`
+  - `learning_starts`
+  - `lr`
+  - `n-jobs`
+  - `n_steps`
+  - `n-trials`
+  - `sampler`
+  - `ortho_init`
+  - `policy_kwargs`
+  - `pruner`
+  - `target_update_interval`
+  - `tau`
+  - ...
+
 
 1. Heuristic for "fine tuning is used":
-- **explicit specification** of hyperparameter in source code:
-  - Examples/selection of hyperparameters such as: 
-    - `batch_size`
-    - `gamma`
-    - `lr`
-    - `n-trials`
-    - `n-jobs`
-    - `sampler`
-    - `pruner`
-    - `ortho_init` (True by default)
-    - `policy_kwargs`
-  - Examples of explicit information:
-    - `[...] learning_rate = 0.001 [...]`
   - chosen RL-algorithm:
     - PPO does not necessarily require hyperparameter tuning, other algorithm does [2]
   - HPO-methods are used [1] such as:
