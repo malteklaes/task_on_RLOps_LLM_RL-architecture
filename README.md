@@ -40,7 +40,7 @@
 > note: very easy and clear example
 
 > **source B1** <br>
-> filename: "sb3_agent.py" (here dehb-config as HPO-method is used)
+> filename: "sb3_agent.py" (here dehb-config as HPO-method is used) <br>
 > link: https://github.com/facebookresearch/how-to-autorl/tree/main/examples
 
 > **source C1** <br>
@@ -92,6 +92,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
     - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning) [1c]
     - `PBT` [1d]
     - ...
+    - **APPLY** in **source B1**
 
     (b) **auto/hand-tuning**:**HPO libraries or frameworks are used**:
     - This criterion can be a bit broad, since, for example, python/stable-baselines3 also uses optuna in the background (except PPO [2]) and, strictly speaking, every file with a lib import "import stable_baselines3" also implicitly uses "hyperparameter tuning". It is therefore assumed that the use of the HPO-lib would have to be combined with a concrete definition of space, as in the hyperopt example (like in case of *hyperopt*).
