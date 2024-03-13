@@ -36,7 +36,7 @@ d. summary/discussion
 
 ### source WITH HT or HPO
 > source A1
-> own py-file: "withHT.py" for very simple CartPole environemnt
+> own py-file: "withHT.py" (for very simple CartPole environment, different learning_rate-hyperparameters)
 > note: very easy and clear example
 
 
@@ -44,17 +44,20 @@ d. summary/discussion
 > link: https://github.com/DLR-RM/rl-baselines3-zoo
 
 > source C1
-> Trainer.cpp
-> link: https://github.com/navneet-nmk/Pytorch-RL-CPP/blob/master/Trainer.cpp
+
 
 ### source WITHOUT HT or HPO
 > source A2
-> own py-file: "withoutHT.py" for very simple CartPole environemnt
+> own py-file: "withoutHT.py" (for very simple CartPole environemnt)
 > note: very easy and clear example
 
 > source B2
+> Jupyter notebook file (ipynb): "7. Temporal Difference and Q-Learning"
+> link: https://github.com/maykulkarni/Machine-Learning-Notebooks/blob/master/07.%20Reinforcement%20Learning/7.%20Temporal%20Difference%20and%20Q-Learning.ipynb
 
 > source C2
+> Trainer.cpp
+> link: https://github.com/navneet-nmk/Pytorch-RL-CPP/blob/master/Trainer.cpp
 
 ## IV. summary/discussion
 
