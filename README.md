@@ -1,4 +1,4 @@
-# Task on RLOps and LLM for automation of RL-architecture2 and non-fct requirements architecture
+# Task on RLOps and LLM for automation of RL-architecture and non-fct requirements architecture
 
 
 > procedure to solve the task
