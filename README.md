@@ -138,8 +138,71 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 
 ### IV-B: discussion
-- LLM-related aspects can be found in "LLM_prompts_training.md" in directory: collections_LLM_prompts_results\LLM_results
+> LLM:
+  - LLM-related aspects can be found in "LLM_prompts_training.md" in directory: collections_LLM_prompts_results\LLM_results
+  
+> Heuristics enumerated succinctly?
+  - No, only central aspects from as many different fields as possible were covered here (4 main criteria/heuristics). However, in the area of ​​"hand-tuning", for example, other patterns would have to be examined in addition to manual/iterative (fpr loop) testing of suitable hyperparameters.
+
+
 ### IV-C: result (comparison between GT and LLM-result) 
+> general result (manually evaluated)
+  -  In general, just by formulating 4 central criteria for when hyperparameter tuning is used in the source code, it was able to deliver very good results. Of a total of 6 instances of source codes, 3 with and 3 without hyperparameter tuning, a total of 5/6 (83%) could be recognized correctly.
+> what does a coherent result have to look like in the result Json?
+  - if one of the specific-criteria is true, the result ("hyperparameter_tuning_applied") is also true and vice versa
+  - **positive result** (hyperparameter tuning was applied)
+  ```
+  [...]
+  "hyperparameter_tuning_applied": true,
+  [...]
+   "specific_criteria": {
+      "auto-tuning": false,
+      "auto/hand-tuning": true,
+      "hand-tuning": true,
+      "parameterization": false
+    }
+  [...]
+  ```
+  - **negative result** (hyperparameter tuning was not applied)
+  ```
+  [...]
+  "hyperparameter_tuning_applied": false,
+  [...]
+   "specific_criteria": {
+      "auto-tuning": false,
+      "auto/hand-tuning": false,
+      "hand-tuning": false,
+      "parameterization": false
+    }
+  [...]
+  ```
+> What does auto-tuning, auto/hand-tuning, hand-tuning mean?
+ - Generally, these terms were inspired by the ICML 2023 paper of Eimer/Lindauer/Raileanu [1] (see abstract of the paper)
+ - **auto-tuning**: is an approach in the area of ​​HPO (Hyperparameter Optimization) that uses automated forms of hyperparameter tuning such as HPO methods/tools (e.g. DEHB, PBT) or configuration files (YAML-files): 
+   - Auto-tuned hyperparameters through configuration files are harder to detect through the LLM because they require specialized knowledge. Here, too, the only error in sourceB1 (actually with hyperparameter tuning, but not recognized) was the LLM.
+ - **auto/hand-tuning**: an approach of both, automation through special libraries (Optuna, scikit-optimize, hyperopt), but also (manual) specifications in the code itself (such as the exact definition of the parameter value range/space):
+   - Similar to hand-tuning for an LLM, it is easier to recognize because in addition to imported libs (where some hyperparameters have been optimized), hyperparameters also have to be adjusted again (space) in the source code itself. (everything recognized correctly by the LLM)
+ - **hand-tuning**: In the code itself, value ranges/space of the hyperparameters are iteratively walked through and tried out (e.g. for-loop):
+   - Can be determined very well by LLM, they are very characteristic patterns used directly in the source code. (everything recognized correctly by the LLM)
+
+> "examples" of the result JSON ("rlArchRestLayout_result_...") and detailed comparison between GT and LLM-result
+- entities like those were measured: filename, language, environment (which RL-env), technique, hyperparameter_tuning_applied, line_numbers (where are major observation points), hyperparameters, libraries, specific_criteria (which type of hyperparameter tuning was used/observed)
+
+> entities with good result GT and LLM-result compared
+- language: always detected by LLM
+- environment: mostly good detected by LLM
+- hyperparameter_tuning_applied: very good detecion-rate (83%)
+- hyperparameters: very good result
+- libraries: very good result
+- specific_criteria: very good result since detected hyperparameter_tuning_applied was good too
+
+> entities with medium/bad result GT and LLM-result compared
+- filename (since LLM mostly does not see name): is not so important
+- technique (very specific and too general result by LLM): must be improved
+- line_numbers (even though the given file was the same, the detected locations were only moderate): must be improved
+
+> conclusion/outlook
+A total of 4 categories in the hand-tuned and auto-tuned areas have already delivered very good detection results but are not yet fully sufficient and still promise a lot of scope for optimization. However, more training input is needed in all areas, especially in the experience of configurations (mistake at sourceB1). However, the pattern description also needs to be expanded with regard to hand tuning. Hyperparameter tuning within the source code can be done, for example. In addition to for-loops, there are other patterns, such as through further iteration variants (while, do-while loops), recursively, through special data structures (queues, trees, stacks (peek vs. pop)) etc. can be tried out.
 
 
 ## V. literature
