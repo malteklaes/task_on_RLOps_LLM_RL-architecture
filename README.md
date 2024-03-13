@@ -44,6 +44,8 @@ d. summary/discussion
 > link: https://github.com/DLR-RM/rl-baselines3-zoo
 
 > source C1
+> Trainer.cpp
+> link: https://github.com/navneet-nmk/Pytorch-RL-CPP/blob/master/Trainer.cpp
 
 ### source WITHOUT HT or HPO
 > source A2
@@ -57,9 +59,11 @@ d. summary/discussion
 ## IV. summary/discussion
 - 
 Which programming language was mainly used: python, ipynt
-Assumption: How do you distinguish whether a source code uses hyperparameter fine tuning or not. If fine tuning is not used, a default setting is used. How can you see in the source code that no fine tuning is used:
-- no **explicit specification** of hyperparameter:
-  - Examples/selection of hyperparameters: 
+Assumption: How do you distinguish whether a source code apply hyperparameter fine tuning or not. If fine tuning is not used, a default setting or prediefined hyperparameter is used. How can you see in the source code whether fine tuning is applied or not:
+
+1. Heuristic for "fine tuning is used":
+- **explicit specification** of hyperparameter in source code:
+  - Examples/selection of hyperparameters such as: 
     - `batch_size`
     - `gamma`
     - `lr`
@@ -67,23 +71,43 @@ Assumption: How do you distinguish whether a source code uses hyperparameter fin
     - `n-jobs`
     - `sampler`
     - `pruner`
+    - `ortho_init` (True by default)
+    - `policy_kwargs`
   - Examples of explicit information:
-    - `python train.py --algo ppo --env MountainCar-v0 -n 50000 -optimize --n-trials 1000 --n-jobs 2 --sampler tpe --pruner median`
     - `[...] learning_rate = 0.001 [...]`
+  - chosen RL-algorithm:
+    - PPO does not necessarily require hyperparameter tuning, other algorithm does [2]
+  - HPO-methods are used [1] such as:
+    - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning)
+    - `RS` (Random Search)
+    - `BGT` (Bayesian Graph Transformer)
+    - `Grid Search`
+  - HPO related libs [3]
+    - `from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, BayesSearchCV`
 
-`class stable_baselines3.ppo.PPO(policy, env, learning_rate=0.0003, n_steps=2048, batch_size=64, n_epochs=10, gamma=0.99, gae_lambda=0.95, clip_range=0.2, clip_range_vf=None, normalize_advantage=True, ent_coef=0.0, vf_coef=0.5, max_grad_norm=0.5, use_sde=False, sde_sample_freq=-1, rollout_buffer_class=None, rollout_buffer_kwargs=None, target_kl=None, stats_window_size=100, tensorboard_log=None, policy_kwargs=None, verbose=0, seed=None, device='auto', _init_setup_model=True)`
 
-- Use/import libraries like *optuna*:
-  - `import optuna` (explicit fine tuning takes place here)
-
+1. Heuristic for "fine tuning is NOT used":
+- use of library base
+  - in python-lib Baselines3, by default "optuna" (pen source hyperparameter optimization framework) is used for optimal hyperparameter and if `optimize` is used, than Baseline3 makes use of those predefined hyperparameter, e.g.: `python -m rl_zoo3.train --algo ppo --env MountainCar-v0 -n 50000 -optimize --n-trials 1000 --n-jobs 2 --sampler tpe --pruner median` (NO)
+    - source: "RL Baselines3 Zoo (https://stable-baselines3.readthedocs.io/en/master/guide/rl_zoo.html#hyperparameter-optimization)
 
 
 ## V. literature
 
 [1] https://www.automl.org/hyperparameter-tuning-in-reinforcement-learning-is-easy-actually/ 
 
-[2] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
+[2] https://jonathan-hui.medium.com/rl-reinforcement-learning-algorithms-comparison-76df90f180cf
+- HPO provide best practice to handle multiple seeds
+
+[3] https://scikit-learn.org/stable/modules/grid_search.html
+
+[4] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
 - "[...] Not all hyperparameters are tuned, and tuning enforces certain default hyperparameter settings that may be different from the official defaults. [...]
 Hyperparameters not specified in rl_zoo3/hyperparams_opt.py are taken from the associated YAML file and fallback to the default values of SB3 if not present. [...]"
 
-[3] RL hyperparameter tuning (RL zoo): https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr and https://github.com/DLR-RM/rl-baselines3-zoo
+[5] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
+- "[...] RL Baselines3 Zoo s a training framework for Reinforcement Learning (RL), [...]
+It provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
+In addition, it includes a collection of tuned hyperparameters for common environments and RL algorithms, and agents trained with those settings. [...]"
+
+[6] RL hyperparameter tuning (RL zoo): https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr and https://github.com/DLR-RM/rl-baselines3-zoo

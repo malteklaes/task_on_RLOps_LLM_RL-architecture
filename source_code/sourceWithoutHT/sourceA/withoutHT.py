@@ -7,8 +7,14 @@ import gymnasium as gym
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
 
-# Parallel environments
+# Parallel environments (with alternatives) (Classic Control Environments)
 vec_env = make_vec_env("CartPole-v1", n_envs=4)
+#vec_env = make_vec_env("Pendulum-v1", n_envs=4)
+#vec_env = make_vec_env("Acrobot-v1", n_envs=4)
+# vec_env = make_vec_env("MountainCar-v0", n_envs=4)
+#vec_env = make_vec_env("MountainCarContinuous-v0", n_envs=4)
+
+
 
 model = PPO("MlpPolicy", vec_env, verbose=1) # no additional hyperparameter (and so no tuning)
 model.learn(total_timesteps=25000)
