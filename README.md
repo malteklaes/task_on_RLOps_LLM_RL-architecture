@@ -81,19 +81,29 @@ To get a better feeling for hyperparameters, here are some examples/selection of
   - ...
 
 
-1. Heuristic for "fine tuning is used":
-  - chosen RL-algorithm:
-    - PPO does not necessarily require hyperparameter tuning, other algorithm does [2]
-  - HPO-methods are used [1] such as:
+1. Heuristic for "fine tuning is applied":
+  a. HPO-methods are used [1] such as:
     - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning)
     - `RS` (Random Search)
     - `BGT` (Bayesian Graph Transformer)
     - `Grid Search`
-  - HPO related libs [3]
-    - `from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, BayesSearchCV`
+  b. HPO libraries or frameworks are used
+    - `Optuna` (python, [6], used especially used in python/stable-baselines3 [7])
+    - `scikit-optimize` (python, [3][4])
+      - e.g. `from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, BayesSearchCV`
+    - `hyperopt` [5]
+  c. Loops in source code that iterate over hyperparameter settings
+    - here a for loop would have to be combined with parameter changes
+  d. Parameterization of hyperparameters with e.g. a 
+  e. chosen RL-algorithm:
+    - PPO does not necessarily require hyperparameter tuning, other algorithm does [2]
+  f. direct implementation of HPO algorithms
+    
+<br>
 
+2. Heuristic for "fine tuning is NOT applied":
+- if 1a-f does not apply
 
-1. Heuristic for "fine tuning is NOT used":
 - use of library base
   - in python-lib Baselines3, by default "optuna" (pen source hyperparameter optimization framework) is used for optimal hyperparameter and if `optimize` is used, than Baseline3 makes use of those predefined hyperparameter, e.g.: `python -m rl_zoo3.train --algo ppo --env MountainCar-v0 -n 50000 -optimize --n-trials 1000 --n-jobs 2 --sampler tpe --pruner median` (NO)
     - source: "RL Baselines3 Zoo (https://stable-baselines3.readthedocs.io/en/master/guide/rl_zoo.html#hyperparameter-optimization)
@@ -108,13 +118,24 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 [3] https://scikit-learn.org/stable/modules/grid_search.html
 
-[4] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
-- "[...] Not all hyperparameters are tuned, and tuning enforces certain default hyperparameter settings that may be different from the official defaults. [...]
-Hyperparameters not specified in rl_zoo3/hyperparams_opt.py are taken from the associated YAML file and fallback to the default values of SB3 if not present. [...]"
+[4] https://scikit-optimize.github.io/stable/
 
-[5] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
+[5] http://hyperopt.github.io/hyperopt/
+
+[6] https://optuna.org/
+
+[7] https://stable-baselines3.readthedocs.io/en/master/guide/rl_zoo.html#hyperparameter-optimization
+
+[8] RL hyperparameter tuning (RL zoo): https://github.com/DLR-RM/rl-baselines3-zoo
+
+[9] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
 - "[...] RL Baselines3 Zoo s a training framework for Reinforcement Learning (RL), [...]
 It provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
 In addition, it includes a collection of tuned hyperparameters for common environments and RL algorithms, and agents trained with those settings. [...]"
 
-[6] RL hyperparameter tuning (RL zoo): https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr and https://github.com/DLR-RM/rl-baselines3-zoo
+[10] general RL: https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr 
+
+[11] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
+- "[...] Not all hyperparameters are tuned, and tuning enforces certain default hyperparameter settings that may be different from the official defaults. [...]
+Hyperparameters not specified in rl_zoo3/hyperparams_opt.py are taken from the associated YAML file and fallback to the default values of SB3 if not present. [...]"
+

@@ -3,31 +3,37 @@ pip install --upgrade numpy
 pip3 install opencv-python """
 
 import gym
+import time
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
 
-# parallel environments
+
 vec_env = make_vec_env("CartPole-v1", n_envs=4)
 
 # HYPERPARAMETER TUNING
-learning_rate = 0.001 # good between 1e-5 and 0.1
-learning_rate_bad = 1e-34 # to low
-learning_rate_veryGood = 0.9 # very high
+learning_rates = [0.001, 1e-34, 0.9]
 
-# params: https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#stable_baselines3.ppo.PPO
-model = PPO("MlpPolicy", vec_env, learning_rate=learning_rate, verbose=1)
+for learning_rate in learning_rates:
+    print(f"Training model with learning rate: {learning_rate}")
+    
+    # apply hyperparameters
+    model = PPO("MlpPolicy", vec_env, learning_rate=learning_rate, verbose=1)
 
-# trian model
-model.learn(total_timesteps=25000)
-model.save("ppo_cartpole")
+    # train model
+    model.learn(total_timesteps=25000)
+    
+    # save model
+    model_name = f"ppo_cartpole_lr_{learning_rate}"
+    model.save(model_name)
+    
+    del model
 
-del model # remove to demonstrate saving and loading
+    model = PPO.load(model_name)
 
-# load saved model
-model = PPO.load("ppo_cartpole")
+    obs = vec_env.reset()
+    start_time = time.time()
+    while (time.time() - start_time) < 2:  # animation for just 2 seconds
+        action, _states = model.predict(obs)
+        obs, rewards, dones, info = vec_env.step(action)
+        vec_env.render("human")
 
-obs = vec_env.reset()
-while True:
-    action, _states = model.predict(obs)
-    obs, rewards, dones, info = vec_env.step(action)
-    vec_env.render("human")
