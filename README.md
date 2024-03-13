@@ -199,7 +199,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 > entities with medium/bad result GT and LLM-result compared
 - filename (since LLM mostly does not see name): is not so important
 - technique (very specific and too general result by LLM): must be improved
-- line_numbers (even though the given file was the same, the detected locations were only moderate): must be improved
+- line_numbers (even though the given file was the same, the detected locations were only moderate, LLM even recog; In the right cases, the LLM recognized mostly the right places, but in the wrong cases, unfortunately it also recognized line numbers, although there shouldn't be any at all): must be improved
 
 > conclusion/outlook
 
