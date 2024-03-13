@@ -29,7 +29,7 @@
 (a) source code instances (at total 6 source files) <br>
 (b) jsonResultLayout (with json layout file, based on json-schema: https://json-schema.org/draft-07/json-schema-release-notes) <br>
 (c) ground truth (GT) files (6 files (3 with HT, 3 without HT) for each source code) <br>
-(d) LLM prompts with LLM output (6 output-json files (3 with HT, 3 without HT), 1 md-file with LLM interaction) <br>
+(d) LLM prompts with LLM results (6 output-json files (3 with HT, 3 without HT), 1 md-file with LLM interaction) <br>
 (e) README.md (with overview, procedure and summary (Criterias/heuristic, discussion, result)) <br>
 
 
@@ -68,7 +68,7 @@
 
 The question is when exactly one can speak of “hyperparameter tuning”. Here it is assumed that the initial definition of hyperparameters in the source code does NOT count towards hyperparameter tuning. There must be a search of a hyperparameter space (to find the combination of hyperparameters) to ultimately lead to improved performance of the RL algorithm.
 
-Further criterions/heuristics will be listed that suggest (or not) the identification of hyperparameter tuning in this sense in a source code.
+Further criteria/heuristics will be listed that suggest (or not) the identification of hyperparameter tuning in this sense in a source code.
 To get a better feeling for hyperparameters, here are some examples/selection of hyperparameters (in python/baselines3) for tuning a RL-Algorithm (not exhaustive, just a selection): 
   - `batch_size`
   - `buffer_size`
@@ -139,16 +139,16 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 ### IV-B: discussion
 > LLM:
-  - LLM-related aspects can be found in "LLM_prompts_training.md" in directory: collections_LLM_prompts_results\LLM_results
+  - LLM-related aspects and discussion can be found in "LLM_prompts_training.md" in directory: collections_LLM_prompts_results\LLM_results
   
-> Heuristics enumerated succinctly?
-  - No, only central aspects from as many different fields as possible were covered here (4 main criteria/heuristics). However, in the area of ​​"hand-tuning", for example, other patterns would have to be examined in addition to manual/iterative (fpr loop) testing of suitable hyperparameters.
+> Heuristics enumerated fully?
+  - No, only central aspects from as many different fields as possible were covered here (4 main criteria/heuristics). However, in the area of ​​"hand-tuning", for example, other patterns would have to be examined in addition to manual/iterative (for-loop) testing of suitable hyperparameters.
 
 
 ### IV-C: result (comparison between GT and LLM-result) 
 > general result (manually evaluated)
-  -  In general, just by formulating 4 central criteria for when hyperparameter tuning is used in the source code, it was able to deliver very good results. Of a total of 6 instances of source codes, 3 with and 3 without hyperparameter tuning, a total of 5/6 (83%) could be recognized correctly.
-> what does a coherent result have to look like in the result Json?
+  -  In general, just by formulating 4 central criteria for when hyperparameter tuning is used in the source code, LLM, equipped with these, was able to deliver very good results. Of a total of 6 instances of source codes, 3 with and 3 without hyperparameter tuning, a total of 5/6 (83%) could be recognized correctly and special entities like hyperparameters itself were also very good indentified.
+> what does a coherent result have to look like in the result Json ("rlArchRestLayout_result_...")?
   - if one of the specific-criteria is true, the result ("hyperparameter_tuning_applied") is also true and vice versa
   - **positive result** (hyperparameter tuning was applied)
   ```
@@ -177,24 +177,24 @@ To get a better feeling for hyperparameters, here are some examples/selection of
   [...]
   ```
 > What does auto-tuning, auto/hand-tuning, hand-tuning mean?
- - Generally, these terms were inspired by the ICML 2023 paper of Eimer/Lindauer/Raileanu [1] (see abstract of the paper)
+ - Generally, I introduced them to make analyse more specific and those terms were inspired by the ICML 2023 paper of Eimer/Lindauer/Raileanu [1] (see abstract of the paper)
  - **auto-tuning**: is an approach in the area of ​​HPO (Hyperparameter Optimization) that uses automated forms of hyperparameter tuning such as HPO methods/tools (e.g. DEHB, PBT) or configuration files (YAML-files): 
-   - Auto-tuned hyperparameters through configuration files are harder to detect through the LLM because they require specialized knowledge. Here, too, the only error in sourceB1 (actually with hyperparameter tuning, but not recognized) was the LLM.
+   - Auto-tuned hyperparameters through configuration files are harder to detect through the LLM because they require specialized knowledge. Here, too, the only error in sourceB1 (actually with hyperparameter tuning, but not recognized) has been made by the LLM.
  - **auto/hand-tuning**: an approach of both, automation through special libraries (Optuna, scikit-optimize, hyperopt), but also (manual) specifications in the code itself (such as the exact definition of the parameter value range/space):
    - Similar to hand-tuning for an LLM, it is easier to recognize because in addition to imported libs (where some hyperparameters have been optimized), hyperparameters also have to be adjusted again (space) in the source code itself. (everything recognized correctly by the LLM)
  - **hand-tuning**: In the code itself, value ranges/space of the hyperparameters are iteratively walked through and tried out (e.g. for-loop):
    - Can be determined very well by LLM, they are very characteristic patterns used directly in the source code. (everything recognized correctly by the LLM)
 
 > "examples" of the result JSON ("rlArchRestLayout_result_...") and detailed comparison between GT and LLM-result
-- entities like those were measured: filename, language, environment (which RL-env), technique, hyperparameter_tuning_applied, line_numbers (where are major observation points), hyperparameters, libraries, specific_criteria (which type of hyperparameter tuning was used/observed)
+- Those entities were measured in the result json file: filename, language, environment (which RL-env), technique, hyperparameter_tuning_applied, line_numbers (where are major observation points), hyperparameters, libraries, specific_criteria (which type of hyperparameter tuning was used/observed)
 
 > entities with good result GT and LLM-result compared
-- language: always detected by LLM
-- environment: mostly good detected by LLM
-- hyperparameter_tuning_applied: very good detecion-rate (83%)
-- hyperparameters: very good result
-- libraries: very good result
-- specific_criteria: very good result since detected hyperparameter_tuning_applied was good too
+  - language: always detected by LLM
+  - environment: mostly good detected by LLM
+  - hyperparameter_tuning_applied: very good detecion-rate (83%)
+  - hyperparameters: very good result
+  - libraries: very good result
+  - specific_criteria: very good result since detected hyperparameter_tuning_applied was good too
 
 > entities with medium/bad result GT and LLM-result compared
 - filename (since LLM mostly does not see name): is not so important
@@ -202,6 +202,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 - line_numbers (even though the given file was the same, the detected locations were only moderate): must be improved
 
 > conclusion/outlook
+
 A total of 4 categories in the hand-tuned and auto-tuned areas have already delivered very good detection results but are not yet fully sufficient and still promise a lot of scope for optimization. However, more training input is needed in all areas, especially in the experience of configurations (mistake at sourceB1). However, the pattern description also needs to be expanded with regard to hand tuning. Hyperparameter tuning within the source code can be done, for example. In addition to for-loops, there are other patterns, such as through further iteration variants (while, do-while loops), recursively, through special data structures (queues, trees, stacks (peek vs. pop)) etc. can be tried out.
 
 
