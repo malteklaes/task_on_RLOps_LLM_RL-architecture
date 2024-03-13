@@ -64,7 +64,7 @@
 
 ## IV. summary
 
-### IV-A: Criterias/heuristic
+### IV-A: Criteria/heuristics
 
 The question is when exactly one can speak of “hyperparameter tuning”. Here it is assumed that the initial definition of hyperparameters in the source code does NOT count towards hyperparameter tuning. There must be a search of a hyperparameter space (to find the combination of hyperparameters) to ultimately lead to improved performance of the RL algorithm.
 
@@ -89,7 +89,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
   - ...
 
 
-1. Criterion/Heuristic for "fine tuning is applied":
+1. Criteria/Heuristic for "fine tuning is applied":
    
    (a) **auto-tuning**: **HPO-methods/tools for auto-RL [1b] are used [1a] such as**:
     - `DEHB` (Distributed Evolutionary Hyperparameter Tuning for Deep Learning) [1c]
@@ -129,7 +129,7 @@ To get a better feeling for hyperparameters, here are some examples/selection of
     
 <br>
 
-1.  Criterion/Heuristic for "fine tuning is NOT applied":
+1.  Criteria/Heuristic for "fine tuning is NOT applied":
 
   - if 1a-d does not apply
     - **APPLY** in **source A2**
@@ -167,18 +167,18 @@ To get a better feeling for hyperparameters, here are some examples/selection of
 
 [8] https://github.com/DLR-RM/rl-baselines3-zoo/tree/master/hyperparams
 
-[8] RL hyperparameter tuning (RL zoo): https://github.com/DLR-RM/rl-baselines3-zoo
-
 [9] https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html
 
-[10] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
+[10] RL hyperparameter tuning (RL zoo): https://github.com/DLR-RM/rl-baselines3-zoo
+
+[11] https://rl-baselines3-zoo.readthedocs.io/en/master/index.html
 - "[...] RL Baselines3 Zoo s a training framework for Reinforcement Learning (RL), [...]
 It provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
 In addition, it includes a collection of tuned hyperparameters for common environments and RL algorithms, and agents trained with those settings. [...]"
 
-[11] general RL: https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr 
+[12] general RL: https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html#tl-dr 
 
-[12] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
+[13] Hyperparameter Tuning: https://rl-baselines3-zoo.readthedocs.io/en/master/guide/tuning.html
 - "[...] Not all hyperparameters are tuned, and tuning enforces certain default hyperparameter settings that may be different from the official defaults. [...]
 Hyperparameters not specified in rl_zoo3/hyperparams_opt.py are taken from the associated YAML file and fallback to the default values of SB3 if not present. [...]"
 
