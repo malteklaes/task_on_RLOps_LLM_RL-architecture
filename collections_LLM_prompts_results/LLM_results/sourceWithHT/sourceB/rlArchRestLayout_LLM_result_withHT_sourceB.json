@@ -1,0 +1,25 @@
+{
+  "examples": [
+    {
+      "filename": "example_source.py",
+      "language": "Python",
+      "environment": "gymnasium, stable_baselines3",
+      "technique": "Reinforcement Learning (RL)",
+      "hyperparameter_tuning_applied": false,
+      "line_numbers": [],
+      "hyperparameters": {},
+      "libraries": [
+        "gymnasium",
+        "stable_baselines3",
+        "hydra",
+        "omegaconf"
+      ],
+      "specific_criteria": {
+        "auto-tuning": false,
+        "auto/hand-tuning": false,
+        "hand-tuning": false,
+        "parameterization": false
+      }
+    }
+  ]
+}

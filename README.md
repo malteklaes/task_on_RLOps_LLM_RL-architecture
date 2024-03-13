@@ -64,7 +64,7 @@
 
 ## IV. summary
 
-#### IV-A: Criterias/heuristic
+### IV-A: Criterias/heuristic
 
 The question is when exactly one can speak of “hyperparameter tuning”. Here it is assumed that the initial definition of hyperparameters in the source code does NOT count towards hyperparameter tuning. There must be a search of a hyperparameter space (to find the combination of hyperparameters) to ultimately lead to improved performance of the RL algorithm.
 
@@ -137,9 +137,9 @@ To get a better feeling for hyperparameters, here are some examples/selection of
     - **APPLY** in **source C2**
 
 
-#### IV-B: discussion
+### IV-B: discussion
 - LLM-related aspects can be found in "LLM_prompts_training.md" in directory: collections_LLM_prompts_results\LLM_results
-#### IV-C: result (comparison between GT and LLM-result) 
+### IV-C: result (comparison between GT and LLM-result) 
 
 
 ## V. literature

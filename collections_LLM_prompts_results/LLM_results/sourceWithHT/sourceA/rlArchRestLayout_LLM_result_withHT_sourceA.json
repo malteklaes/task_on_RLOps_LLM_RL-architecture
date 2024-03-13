@@ -1,0 +1,28 @@
+{
+  "examples": [
+    {
+      "filename": "example_source.py",
+      "language": "Python",
+      "environment": "gym, stable_baselines3",
+      "technique": "Reinforcement Learning (RL)",
+      "hyperparameter_tuning_applied": true,
+      "line_numbers": [
+        13,
+        15
+      ],
+      "hyperparameters": {
+        "learning_rate": "0.001, 1e-34, 0.9"
+      },
+      "libraries": [
+        "gym",
+        "stable_baselines3"
+      ],
+      "specific_criteria": {
+        "auto-tuning": false,
+        "auto/hand-tuning": true,
+        "hand-tuning": true,
+        "parameterization": false
+      }
+    }
+  ]
+}

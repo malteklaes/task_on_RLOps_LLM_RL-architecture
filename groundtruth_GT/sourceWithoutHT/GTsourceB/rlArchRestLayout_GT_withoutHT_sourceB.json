@@ -1,0 +1,30 @@
+{
+  "examples": [
+    {
+      "filename": "hyperparameter_tuning_taxi.ipynb",
+      "language": "Jupyter notebook file (Python)",
+      "environment": "gym",
+      "technique": "Q-Learning",
+      "hyperparameter_tuning_applied": false,
+      "line_numbers": [],
+      "hyperparameters": {
+        "total_episodes": "50000",
+        "total_test_episodes": "100",
+        "max_steps": "99",
+        "learning_rate": "0.7",
+        "gamma": "0.618",
+        "epsilon": "1.0",
+        "max_epsilon": "1.0",
+        "min_epsilon": "0.01",
+        "decay_rate": "0.01"
+      },
+      "libraries": ["numpy", "gym"],
+      "specific_criteria": {
+        "auto-tuning": false,
+        "auto/hand-tuning": false,
+        "hand-tuning": false,
+        "parameterization": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "examples": [
+    {
+      "filename": "example_source.cpp",
+      "language": "C++",
+      "environment": "Arcade-Learning-Environment",
+      "technique": "Reinforcement Learning (RL)",
+      "hyperparameter_tuning_applied": false,
+      "line_numbers": [
+        20,
+        36,
+        50,
+        80,
+        104,
+        110,
+        116,
+        131,
+        143,
+        151,
+        156,
+        164,
+        190
+      ],
+      "hyperparameters": {
+        "batch_size": "not defined",
+        "gamma": "0.618",
+        "epsilon_start": "1.0",
+        "epsilon_final": "not defined",
+        "epsilon_decay": "not defined"
+      },
+      "libraries": [
+        "torch",
+        "chrono",
+        "ale_interface.hpp"
+      ],
+      "specific_criteria": {
+        "auto-tuning": false,
+        "auto/hand-tuning": false,
+        "hand-tuning": false,
+        "parameterization": false
+      }
+    }
+  ]
+}

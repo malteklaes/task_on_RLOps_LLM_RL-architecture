@@ -1,0 +1,30 @@
+{
+  "examples": [
+    {
+      "filename": "example_source.py",
+      "language": "Python",
+      "environment": "",
+      "technique": "Hyperparameter Optimization (HPO)",
+      "hyperparameter_tuning_applied": true,
+      "line_numbers": [
+        6,
+        9,
+        16,
+        23,
+        26,
+        29,
+        32
+      ],
+      "hyperparameters": {},
+      "libraries": [
+        "hyperopt"
+      ],
+      "specific_criteria": {
+        "auto-tuning": true,
+        "auto/hand-tuning": false,
+        "hand-tuning": false,
+        "parameterization": true
+      }
+    }
+  ]
+}
